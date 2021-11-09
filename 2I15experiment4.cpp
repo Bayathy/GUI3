@@ -142,6 +142,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         TimeOut = 10;
         counter = 0;
         SetTimer(hWnd, TimerID,TimeOut, NULL);
+        GetLocalTime(&stStart);
         break;
 
     case WM_COMMAND:
@@ -163,9 +164,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         break;
 
     case WM_TIMER:
-        if (counter == 0)
-            GetLocalTime(&stStart);
-
         counter++;
 
         if (counter == 100){
@@ -185,6 +183,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             if(TimeOut <=60){
                 counter = 0;
                 SetTimer(hWnd, TimerID, TimeOut, NULL);
+                GetLocalTime(&stStart);
             }
             else{
                 output.close();
